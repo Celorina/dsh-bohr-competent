@@ -1,0 +1,41 @@
+{
+ "pages": 2,
+ "two_column": true,
+ "title": "Column-Aware Extraction of Structured Content",
+ "sections": [
+  "1. Introduction",
+  "1.1 Problem setting",
+  "2. Methods",
+  "2.1 Reading order",
+  "3. Results",
+  "3.1 Residual error",
+  "4. Conclusion",
+  "References"
+ ],
+ "tables": [
+  {
+   "label": "Table 1",
+   "rows": 4,
+   "cols": 4,
+   "header": [
+    "System",
+    "E_bind",
+    "Error",
+    "Runs"
+   ]
+  }
+ ],
+ "formulas": [
+  "1",
+  "2"
+ ],
+ "figures": [
+  "Figure 1"
+ ],
+ "references_count": 2,
+ "cross_column_continuation": "is treated as one paragraph that was split by the column break",
+ "footer_pages": [
+  "1",
+  "2"
+ ]
+}

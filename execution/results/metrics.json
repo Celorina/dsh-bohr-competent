@@ -1,0 +1,12 @@
+{
+ "section_recall": 1.0,
+ "section_order_correct": true,
+ "table_geometry_correct": true,
+ "formula_recall": 1.0,
+ "figure_label_recall": 1.0,
+ "references_count_correct": true,
+ "cross_column_continuation_joined": true,
+ "block_locator_coverage": 1.0,
+ "footer_leaked_into_body": 0,
+ "composite_score": 1.0
+}

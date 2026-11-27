@@ -1,0 +1,111 @@
+{
+  "scope": "Skill behaviour on the bundled synthetic two-column fixture (examples/sample_two_column.pdf). Not a benchmark result on the platform's fixed scientific cases.",
+  "deviations_from_paper": [
+    {
+      "target": "section tree",
+      "metric": "relative_error",
+      "actual_value": 0.0,
+      "reference_value": 0.0,
+      "score": 1.0,
+      "note": "8 of 8 ground-truth sections recovered, in order, including '1.1 Problem setting' and '3.1 Residual error'. Evidence: execution/results/metrics.json -> section_recall, section_order_correct.",
+      "evidence_artifact": "execution/results/metrics.json"
+    },
+    {
+      "target": "table geometry",
+      "metric": "exact_match",
+      "actual_value": 1.0,
+      "reference_value": 1.0,
+      "score": 1.0,
+      "note": "The ruled 4x4 table is recovered with rows=4, cols=4 and its header row ['System','E_bind','Error','Runs']; the two-column running text above it is correctly rejected as a table.",
+      "evidence_artifact": "execution/results/result.json"
+    },
+    {
+      "target": "equation numbers",
+      "metric": "exact_match",
+      "actual_value": 1.0,
+      "reference_value": 1.0,
+      "score": 1.0,
+      "note": "Equations (1) and (2) are captured with their numbers; citations containing '=' and digits are not misreported as equations.",
+      "evidence_artifact": "execution/results/result.json"
+    },
+    {
+      "target": "cross-column paragraph continuation",
+      "metric": "exact_match",
+      "actual_value": 1.0,
+      "reference_value": 1.0,
+      "score": 1.0,
+      "note": "The paragraph that starts at the foot of the left column and continues at the head of the right column is rejoined into one paragraph; the join is recorded in changes.",
+      "evidence_artifact": "execution/results/result.json"
+    },
+    {
+      "target": "block locator coverage",
+      "metric": "exact_match",
+      "actual_value": 1.0,
+      "reference_value": 1.0,
+      "score": 1.0,
+      "note": "Every paragraph, table and formula carries both a page number and a p07-b012 style block id.",
+      "evidence_artifact": "execution/results/metrics.json"
+    },
+    {
+      "target": "header/footer separation",
+      "metric": "exact_match",
+      "actual_value": 0.0,
+      "reference_value": 0.0,
+      "score": 1.0,
+      "note": "Both running headers and both page-number footers are classified as header_footer and appear in no paragraph. Metric is a leak count, so 0 is correct.",
+      "evidence_artifact": "execution/results/metrics.json"
+    },
+    {
+      "target": "real-world PDF smoke test",
+      "metric": "physical_consistency",
+      "actual_value": 1.0,
+      "reference_value": 1.0,
+      "score": 1.0,
+      "note": "A 22-page Chinese tutorial PDF parses without error (68 headings, 45 paragraphs, 18 captions, 0 missing pages). Its page layout is not ground-truthed here, so this records robustness, not accuracy.",
+      "evidence_artifact": "execution/run.log"
+    }
+  ],
+  "empirical_envelope": {
+    "verified_on": "a two-page two-column fixture with a spanning title/abstract, one continued paragraph, one ruled table, two numbered equations, running headers and footers",
+    "untested_here": [
+      "multi-column (3+) layouts",
+      "scanned pages without a text layer",
+      "tables with merged cells, multi-row headers, or continuation across a page break",
+      "formulas present only as images",
+      "right-to-left scripts",
+      "encrypted PDFs"
+    ]
+  },
+  "failure_modes": [
+    {
+      "mode": "A page has no text layer (scanned document)",
+      "impact": "That page's content is absent from every output list; status becomes 'partial' and the page is listed under result.missing with handling 'reported, not guessed'.",
+      "evidence_artifact": "scripts/pdfstruct/document.py"
+    },
+    {
+      "mode": "Two unrelated paragraphs share a region and the first lacks terminal punctuation",
+      "impact": "A false continuation merge. The join is always written to 'changes', so the merge is auditable, but the paragraph boundary would be wrong.",
+      "evidence_artifact": "scripts/pdfstruct/document.py"
+    },
+    {
+      "mode": "A table has no repeated column alignment (merged cells, multi-row header)",
+      "impact": "Rows or columns are under-counted, or the region is not reported as a table at all. Cell contents that cannot be attributed are left empty rather than guessed.",
+      "evidence_artifact": "scripts/pdfstruct/tables.py"
+    },
+    {
+      "mode": "Only a coordinate-free backend (pypdf) is available",
+      "impact": "Column order and block geometry become unreliable; the run records an explicit uncertainty item instead of silently returning plausible-looking wrong order.",
+      "evidence_artifact": "scripts/pdfstruct/backends.py"
+    },
+    {
+      "mode": "CJK text without inter-word spaces",
+      "impact": "Gap-based column and heading heuristics weaken; heading detection becomes looser and may over-detect sections.",
+      "evidence_artifact": "scripts/pdfstruct/layout.py"
+    },
+    {
+      "mode": "A paragraph continues across a page break",
+      "impact": "Rejoined only when the punctuation/case heuristic fires; otherwise it stays as two paragraphs, which is visible in the output rather than hidden.",
+      "evidence_artifact": "scripts/pdfstruct/document.py"
+    }
+  ]
+}

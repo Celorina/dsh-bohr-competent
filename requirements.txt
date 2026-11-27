@@ -1,0 +1,8 @@
+# pdfstruct runtime requirements
+# pdfminer.six provides the required character-level coordinates.
+pdfminer.six>=20221105
+
+# Optional. Used only if present: pypdf as a last-resort text backend whose output has no
+# coordinates, and pdfplumber if the image happens to ship it. The parser degrades honestly
+# and records which backend served each run in result.json -> document.backend.
+pypdf>=3.0

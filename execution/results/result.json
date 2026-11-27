@@ -1,0 +1,499 @@
+{
+ "case_id": "sample01",
+ "status": "success",
+ "document": {
+  "path": "sample_two_column.pdf",
+  "sha256": "8f8b4f5dc2e924dd0ec5d713c141eb45353fb4f848d0a7b85a47cdff381d7fe7",
+  "pages": 2,
+  "backend": "pdfminer.six",
+  "body_font_size": 9.0,
+  "two_column_pages": [
+   1,
+   2
+  ],
+  "gutter_diagnostics": {
+   "gutter_x": 313.34,
+   "crossings": 3,
+   "lines_left": 13,
+   "lines_right": 6,
+   "total_lines": 22,
+   "two_columns": true
+  }
+ },
+ "result": {
+  "sections": [
+   {
+    "level": 1,
+    "number": null,
+    "title": "Column-Aware Extraction of Structured Content",
+    "page": 1,
+    "block_id": "p01-b002"
+   },
+   {
+    "level": 1,
+    "number": "1",
+    "title": "1. Introduction",
+    "page": 1,
+    "block_id": "p01-b006"
+   },
+   {
+    "level": 2,
+    "number": "1.1",
+    "title": "1.1 Problem setting",
+    "page": 1,
+    "block_id": "p01-b008"
+   },
+   {
+    "level": 1,
+    "number": "2",
+    "title": "2. Methods",
+    "page": 1,
+    "block_id": "p01-b011"
+   },
+   {
+    "level": 2,
+    "number": "2.1",
+    "title": "2.1 Reading order",
+    "page": 1,
+    "block_id": "p01-b013"
+   },
+   {
+    "level": 1,
+    "number": "3",
+    "title": "3. Results",
+    "page": 2,
+    "block_id": "p02-b002"
+   },
+   {
+    "level": 2,
+    "number": "3.1",
+    "title": "3.1 Residual error",
+    "page": 2,
+    "block_id": "p02-b005"
+   },
+   {
+    "level": 1,
+    "number": "4",
+    "title": "4. Conclusion",
+    "page": 2,
+    "block_id": "p02-b010"
+   },
+   {
+    "level": 1,
+    "number": null,
+    "title": "References",
+    "page": 2,
+    "block_id": "p02-b012"
+   }
+  ],
+  "paragraphs": [
+   {
+    "id": "p01-b003",
+    "page": 1,
+    "block_id": "p01-b003",
+    "text": "A. Author, B. Author and C. Author",
+    "first_sentence": "A.",
+    "n_lines": 1,
+    "column": "r001",
+    "section": "Column-Aware Extraction of Structured Content"
+   },
+   {
+    "id": "p01-b004",
+    "page": 1,
+    "block_id": "p01-b004",
+    "text": "Institute of Reproducible Reading, Example University",
+    "first_sentence": "Institute of Reproducible Reading, Example University",
+    "n_lines": 1,
+    "column": "r001",
+    "section": "Column-Aware Extraction of Structured Content"
+   },
+   {
+    "id": "p01-b005",
+    "page": 1,
+    "block_id": "p01-b005",
+    "text": "ABSTRACT We describe a parser that recovers sections, paragraphs, tables and equations from two-column articles while keeping every element traceable to a page and a block identifier.",
+    "first_sentence": "ABSTRACT We describe a parser that recovers sections, paragraphs, tables and equations from two-column articles while keeping every element traceable to a page and a block identifier.",
+    "n_lines": 4,
+    "column": "r002",
+    "section": "Column-Aware Extraction of Structured Content"
+   },
+   {
+    "id": "p01-b007",
+    "page": 1,
+    "block_id": "p01-b007",
+    "text": "Two-column layouts interleave reading order with geometry. A parser that ignores columns concatenates lines from different paragraphs and silently corrupts the meaning of the text.",
+    "first_sentence": "Two-column layouts interleave reading order with geometry.",
+    "n_lines": 4,
+    "column": "r003",
+    "section": "1. Introduction"
+   },
+   {
+    "id": "p01-b009",
+    "page": 1,
+    "block_id": "p01-b009",
+    "text": "The central difficulty is that a column break is invisible in the raw content stream: the next text run simply jumps back to the left margin, several hundred points higher on the page. Any consumer of the extracted text inherits that jump as a broken sentence.",
+    "first_sentence": "The central difficulty is that a column break is invisible in the raw content stream: the next text run simply jumps back to the left margin, several hundred points higher on the page.",
+    "n_lines": 5,
+    "column": "r003",
+    "section": "1.1 Problem setting"
+   },
+   {
+    "id": "p01-b010",
+    "page": 1,
+    "block_id": "p01-b010",
+    "text": "The continuation rule we adopt is simple but effective: a paragraph that does not terminate with sentence punctuation and is immediately followed, at the head of the next column, by text that begins in lower case is treated as one paragraph that was split by the column break, and the two fragments are rejoined in reading order before any downstream analysis runs on the text.",
+    "first_sentence": "The continuation rule we adopt is simple but effective: a paragraph that does not terminate with sentence punctuation and is immediately followed, at the head of the next column, by text that begins in lower case is treated as one paragraph that was split by the column break, and the two fragments a",
+    "n_lines": 4,
+    "column": "r003",
+    "section": "1.1 Problem setting",
+    "continued_into": [
+     {
+      "page": 1,
+      "block_id": "p01-b012"
+     }
+    ]
+   },
+   {
+    "id": "p01-b014",
+    "page": 1,
+    "block_id": "p01-b014",
+    "text": "We group words into lines by vertical overlap, then sweep a vertical corridor across the page to locate the gutter. Lines that cross the corridor are treated as full-width elements and interrupt the column stream rather than joining either column.",
+    "first_sentence": "We group words into lines by vertical overlap, then sweep a vertical corridor across the page to locate the gutter.",
+    "n_lines": 4,
+    "column": "r005",
+    "section": "2.1 Reading order"
+   },
+   {
+    "id": "p01-b015",
+    "page": 1,
+    "block_id": "p01-b015",
+    "text": "The affinity of the binding site is given by where each term is the total energy in kcal per mole.",
+    "first_sentence": "The affinity of the binding site is given by where each term is the total energy in kcal per mole.",
+    "n_lines": 1,
+    "column": "r006",
+    "section": "2.1 Reading order",
+    "continued_into": [
+     {
+      "page": 1,
+      "block_id": "p01-b017"
+     }
+    ]
+   },
+   {
+    "id": "p02-b003",
+    "page": 2,
+    "block_id": "p02-b003",
+    "text": "The parsed order matched the visual order on all pages of the reference set. Table 1 was recovered with four rows and four columns, including its header row.",
+    "first_sentence": "The parsed order matched the visual order on all pages of the reference set.",
+    "n_lines": 3,
+    "column": "r001",
+    "section": "3. Results"
+   },
+   {
+    "id": "p02-b006",
+    "page": 2,
+    "block_id": "p02-b006",
+    "text": "Residuals stay below the reporting precision of the source tables. The relative deviation is written as and never exceeds four percent in the reference set.",
+    "first_sentence": "Residuals stay below the reporting precision of the source tables.",
+    "n_lines": 2,
+    "column": "r003",
+    "section": "3.1 Residual error",
+    "continued_into": [
+     {
+      "page": 2,
+      "block_id": "p02-b009"
+     }
+    ]
+   },
+   {
+    "id": "p02-b011",
+    "page": 2,
+    "block_id": "p02-b011",
+    "text": "Column-aware ordering plus explicit continuation merging recovers paragraphs that a naive reader splits across the column break. Every emitted element carries a page and block identifier, so any downstream claim can be traced back to the exact source region.",
+    "first_sentence": "Column-aware ordering plus explicit continuation merging recovers paragraphs that a naive reader splits across the column break.",
+    "n_lines": 4,
+    "column": "r005",
+    "section": "4. Conclusion"
+   }
+  ],
+  "tables": [
+   {
+    "id": "t01",
+    "page": 1,
+    "block_id": "p01-b019",
+    "rows": 4,
+    "cols": 4,
+    "header": [
+     "System",
+     "E_bind",
+     "Error",
+     "Runs"
+    ],
+    "cells": [
+     [
+      "System",
+      "E_bind",
+      "Error",
+      "Runs"
+     ],
+     [
+      "Host-A / Guest-1",
+      "-12.4",
+      "0.3",
+      "5"
+     ],
+     [
+      "Host-A / Guest-2",
+      "-9.8",
+      "0.2",
+      "5"
+     ],
+     [
+      "Host-B / Guest-1",
+      "-15.1",
+      "0.4",
+      "3"
+     ]
+    ],
+    "markdown": "| System | E_bind | Error | Runs |\n| --- | --- | --- | --- |\n| Host-A / Guest-1 | -12.4 | 0.3 | 5 |\n| Host-A / Guest-2 | -9.8 | 0.2 | 5 |\n| Host-B / Guest-1 | -15.1 | 0.4 | 3 |",
+    "bbox": {
+     "x0": 58.0,
+     "top": 646.26,
+     "x1": 445.25,
+     "bottom": 708.76
+    },
+    "method": "repeated column alignment of word gaps"
+   }
+  ],
+  "formulas": [
+   {
+    "number": "1",
+    "text": "E_bind = E_complex - (E_host + E_guest)",
+    "page": 1,
+    "block_id": "p01-b016"
+   },
+   {
+    "number": "2",
+    "text": "delta = |E_calc - E_ref| / |E_ref|",
+    "page": 2,
+    "block_id": "p02-b007"
+   }
+  ],
+  "figures": [
+   {
+    "label": "Table1",
+    "kind": "table",
+    "caption": "Table 1. Measured binding energies for the reference set.",
+    "page": 1,
+    "block_id": "p01-b018"
+   },
+   {
+    "label": "Figure1",
+    "kind": "figure",
+    "caption": "Figure 1. Parsed block map for page one. Boxes show block identifiers; the gutter is shaded.",
+    "page": 2,
+    "block_id": "p02-b004"
+   }
+  ],
+  "references": [
+   {
+    "text": "[1] A. Author, B. Author, Column-aware extraction, J. Synth. Fix. 11 (2025) 1-9.",
+    "page": 2,
+    "block_id": "p02-b013",
+    "part": 1,
+    "parts_total": 2
+   },
+   {
+    "text": "[2] C. Author, Reading order recovery for multi-column PDF, in: Proc. Example, 2024.",
+    "page": 2,
+    "block_id": "p02-b013",
+    "part": 2,
+    "parts_total": 2
+   }
+  ],
+  "headers_footers": [
+   {
+    "page": 1,
+    "block_id": "p01-b001",
+    "text": "Journal of Synthetic Fixtures 12 (2026) 001-002",
+    "band": "top"
+   },
+   {
+    "page": 1,
+    "block_id": "p01-b035",
+    "text": "1",
+    "band": "bottom"
+   },
+   {
+    "page": 2,
+    "block_id": "p02-b001",
+    "text": "Journal of Synthetic Fixtures 12 (2026) 001-002",
+    "band": "top"
+   },
+   {
+    "page": 2,
+    "block_id": "p02-b014",
+    "text": "2",
+    "band": "bottom"
+   }
+  ],
+  "missing": [],
+  "counts": {
+   "sections": 9,
+   "paragraphs": 11,
+   "tables": 1,
+   "formulas": 2,
+   "figures": 2,
+   "references": 2,
+   "headers_footers": 4,
+   "missing": 0
+  }
+ },
+ "evidence": [
+  {
+   "kind": "paragraph",
+   "block_id": "p01-b003",
+   "page": 1,
+   "quote": "A. Author, B. Author and C. Author",
+   "basis": "text layer, column-aware reading order"
+  },
+  {
+   "kind": "paragraph",
+   "block_id": "p01-b004",
+   "page": 1,
+   "quote": "Institute of Reproducible Reading, Example University",
+   "basis": "text layer, column-aware reading order"
+  },
+  {
+   "kind": "paragraph",
+   "block_id": "p01-b005",
+   "page": 1,
+   "quote": "ABSTRACT We describe a parser that recovers sections, paragraphs, tables and equations from two-column articles while keeping every element traceable to a page ",
+   "basis": "text layer, column-aware reading order"
+  },
+  {
+   "kind": "paragraph",
+   "block_id": "p01-b007",
+   "page": 1,
+   "quote": "Two-column layouts interleave reading order with geometry. A parser that ignores columns concatenates lines from different paragraphs and silently corrupts the ",
+   "basis": "text layer, column-aware reading order"
+  },
+  {
+   "kind": "paragraph",
+   "block_id": "p01-b009",
+   "page": 1,
+   "quote": "The central difficulty is that a column break is invisible in the raw content stream: the next text run simply jumps back to the left margin, several hundred po",
+   "basis": "text layer, column-aware reading order"
+  },
+  {
+   "kind": "paragraph",
+   "block_id": "p01-b010",
+   "page": 1,
+   "quote": "The continuation rule we adopt is simple but effective: a paragraph that does not terminate with sentence punctuation and is immediately followed, at the head o",
+   "basis": "text layer, column-aware reading order"
+  },
+  {
+   "kind": "paragraph",
+   "block_id": "p01-b014",
+   "page": 1,
+   "quote": "We group words into lines by vertical overlap, then sweep a vertical corridor across the page to locate the gutter. Lines that cross the corridor are treated as",
+   "basis": "text layer, column-aware reading order"
+  },
+  {
+   "kind": "paragraph",
+   "block_id": "p01-b015",
+   "page": 1,
+   "quote": "The affinity of the binding site is given by where each term is the total energy in kcal per mole.",
+   "basis": "text layer, column-aware reading order"
+  },
+  {
+   "kind": "paragraph",
+   "block_id": "p02-b003",
+   "page": 2,
+   "quote": "The parsed order matched the visual order on all pages of the reference set. Table 1 was recovered with four rows and four columns, including its header row.",
+   "basis": "text layer, column-aware reading order"
+  },
+  {
+   "kind": "paragraph",
+   "block_id": "p02-b006",
+   "page": 2,
+   "quote": "Residuals stay below the reporting precision of the source tables. The relative deviation is written as and never exceeds four percent in the reference set.",
+   "basis": "text layer, column-aware reading order"
+  },
+  {
+   "kind": "paragraph",
+   "block_id": "p02-b011",
+   "page": 2,
+   "quote": "Column-aware ordering plus explicit continuation merging recovers paragraphs that a naive reader splits across the column break. Every emitted element carries a",
+   "basis": "text layer, column-aware reading order"
+  },
+  {
+   "kind": "table",
+   "block_id": "p01-b019",
+   "page": 1,
+   "quote": "table 4x4",
+   "basis": "repeated column alignment of word gaps"
+  },
+  {
+   "kind": "formula",
+   "block_id": "p01-b016",
+   "page": 1,
+   "quote": "E_bind = E_complex - (E_host + E_guest)",
+   "basis": "formula pattern match"
+  },
+  {
+   "kind": "formula",
+   "block_id": "p02-b007",
+   "page": 2,
+   "quote": "delta = |E_calc - E_ref| / |E_ref|",
+   "basis": "formula pattern match"
+  }
+ ],
+ "uncertainty": [
+  {
+   "item": "continuations",
+   "note": "3 paragraph(s) were rejoined across a column or page break by punctuation/case heuristic; each join is listed under changes"
+  }
+ ],
+ "changes": [
+  {
+   "what": "initial parse",
+   "detail": "single pass, no OCR",
+   "version": "1.0.0"
+  }
+ ],
+ "sources": [
+  {
+   "type": "input_file",
+   "path": "D:\\BOHIRUM\\dsh work\\submission\\examples\\sample_two_column.pdf",
+   "sha256": "8f8b4f5dc2e924dd0ec5d713c141eb45353fb4f848d0a7b85a47cdff381d7fe7"
+  },
+  {
+   "type": "backend",
+   "name": "pdfminer.six"
+  },
+  {
+   "type": "table_detector",
+   "name": "internal gap-clustering"
+  }
+ ],
+ "runtime": {
+  "tool": "pdfstruct",
+  "version": "1.0.0",
+  "seconds": 0.3,
+  "backend_attempts": [
+   {
+    "backend": "pdfplumber",
+    "ok": false,
+    "error": "ModuleNotFoundError: No module named 'pdfplumber'"
+   },
+   {
+    "backend": "pdfminer.six",
+    "ok": true,
+    "pages": 2,
+    "words": 455
+   }
+  ]
+ },
+ "task_text": null
+}

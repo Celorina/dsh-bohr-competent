@@ -35,15 +35,18 @@ scripts/pdfstruct/
     tables.py               table detection from repeated column alignment
     document.py             assembles result.json (sections/paras/tables/eqs/refs/missing)
 scripts/cli.py              command-line entry, auto-detects the input PDF and output dir
-src/reproduce.py            end-to-end run on the bundled fixture (ARM entry point)
+src/reproduce.py            end-to-end run on the fixture (ARM entry point)
 examples/make_sample.py     builds the two-column fixture + ground truth with stdlib only
-examples/sample_two_column.pdf
 examples/ground_truth.json
 tests/evaluate.py           scores a result.json against the ground truth
 execution/run.log           log of the recorded run
 execution/results/          result.json, metrics.json, summary.md from that run
 characterization.json       what is measured, what is not, and how it can fail
 ```
+
+The fixture PDF is **not committed**: Skill resources must be text files, so
+`src/reproduce.py` generates it into a temporary directory at run time and only the JSON
+results are written back.
 
 ## Requirements
 

@@ -1,0 +1,8 @@
+[reproduce] generated fixture at C:\Users\赵利科\AppData\Local\Temp\pdfstruct-fixture-b8fqarvc\sample_two_column.pdf (not part of the bundle)
+[reproduce] pdf=C:\Users\赵利科\AppData\Local\Temp\pdfstruct-fixture-b8fqarvc\sample_two_column.pdf
+[reproduce] parsed: {"sections": 9, "paragraphs": 11, "tables": 1, "formulas": 2, "figures": 2, "references": 2, "headers_footers": 4, "missing": 0}
+[reproduce] wrote D:\BOHIRUM\dsh work\submission\execution\results\result.json
+[reproduce] metrics: {"section_recall": 1.0, "section_order_correct": true, "table_geometry_correct": true, "formula_recall": 1.0, "figure_label_recall": 1.0, "references_count_correct": true, "cross_column_continuation_joined": true, "block_locator_coverage": 1.0, "footer_leaked_into_body": 0, "composite_score": 1.0}
+[reproduce] wrote D:\BOHIRUM\dsh work\submission\execution\results\metrics.json
+[reproduce] wrote D:\BOHIRUM\dsh work\submission\execution\results\summary.md
+[reproduce] done in 0.35s

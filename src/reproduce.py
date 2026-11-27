@@ -26,9 +26,26 @@ sys.path.insert(0, os.path.join(ROOT, "scripts"))
 from pdfstruct import document as docmod  # noqa: E402
 
 
+def ensure_fixture(target_dir):
+    """Build the example PDF at run time instead of shipping it.
+
+    The platform refuses binary Skill resources, and the fixture is fully described by
+    examples/make_sample.py (standard library only), so the PDF is generated into a
+    temporary directory for the duration of the run and never enters the bundle.
+    """
+    os.makedirs(target_dir, exist_ok=True)
+    pdf_path = os.path.join(target_dir, "sample_two_column.pdf")
+    sys.path.insert(0, os.path.join(ROOT, "examples"))
+    import make_sample  # noqa: E402
+
+    make_sample.write_pdf(pdf_path, make_sample.build())
+    return pdf_path
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--pdf", default=os.path.join(ROOT, "examples", "sample_two_column.pdf"))
+    ap.add_argument("--pdf", default=None,
+                    help="PDF to parse; the bundled fixture is generated when omitted")
     ap.add_argument("--out", default=os.path.join(ROOT, "execution", "results"))
     args = ap.parse_args()
 
@@ -38,12 +55,21 @@ def main():
     def log(msg):
         print("[reproduce] %s" % msg, flush=True)
 
-    log("pdf=%s" % args.pdf)
-    if not os.path.isfile(args.pdf):
-        log("FATAL: example PDF missing; run examples/make_sample.py first")
+    if args.pdf:
+        pdf_path = args.pdf
+    else:
+        import tempfile
+
+        tmpdir = tempfile.mkdtemp(prefix="pdfstruct-fixture-")
+        pdf_path = ensure_fixture(tmpdir)
+        log("generated fixture at %s (not part of the bundle)" % pdf_path)
+
+    log("pdf=%s" % pdf_path)
+    if not os.path.isfile(pdf_path):
+        log("FATAL: PDF not found: %s" % pdf_path)
         return 2
 
-    result = docmod.parse_pdf(args.pdf, case_id="sample01")
+    result = docmod.parse_pdf(pdf_path, case_id="sample01")
     result["changes"] = [{"what": "initial parse", "detail": "single pass, no OCR",
                           "version": docmod.VERSION}]
 

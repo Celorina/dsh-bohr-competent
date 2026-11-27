@@ -465,7 +465,7 @@
  "sources": [
   {
    "type": "input_file",
-   "path": "D:\\BOHIRUM\\dsh work\\submission\\examples\\sample_two_column.pdf",
+   "path": "C:\\Users\\赵利科\\AppData\\Local\\Temp\\pdfstruct-fixture-b8fqarvc\\sample_two_column.pdf",
    "sha256": "8f8b4f5dc2e924dd0ec5d713c141eb45353fb4f848d0a7b85a47cdff381d7fe7"
   },
   {
@@ -480,7 +480,7 @@
  "runtime": {
   "tool": "pdfstruct",
   "version": "1.0.0",
-  "seconds": 0.3,
+  "seconds": 0.32,
   "backend_attempts": [
    {
     "backend": "pdfplumber",
